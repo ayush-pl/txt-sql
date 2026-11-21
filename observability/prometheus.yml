@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  # SQLForge FastAPI app (the `api` container in the root docker-compose.yml). One target only:
+  # the container also publishes :8080 on the host, so adding host.docker.internal:8080 would
+  # scrape the same process twice and double every sum. For uvicorn-on-host dev, swap the target.
+  - job_name: sqlforge-api
+    static_configs: [{ targets: ["api:8080"] }]
+
+  # vLLM OpenAI server (WSL2, :8000, forwarded to Windows localhost)
+  - job_name: vllm
+    static_configs: [{ targets: ["host.docker.internal:8000"] }]
+
+  - job_name: prometheus
+    static_configs: [{ targets: ["localhost:9090"] }]

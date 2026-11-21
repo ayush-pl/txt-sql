@@ -1,0 +1,17 @@
+# SQLForge-3B (run 2) for Ollama / llama.cpp, quantized on import:
+#   ollama create sqlforge-int4 -f serving/ollama/Modelfile --quantize int4
+#   ollama create sqlforge-int8 -f serving/ollama/Modelfile --quantize int8
+# (Ollama >= 0.40 quantize types: int4, int8, nvfp4, mxfp4, mxfp8; classic GGUF K-quants need llama.cpp)
+# Path is relative to this file.
+FROM ../../models/sqlforge-3b-v2-step1014
+
+# Qwen2.5 ChatML template (same as the HF tokenizer's chat template, without tool calls)
+TEMPLATE """{{- range .Messages }}<|im_start|>{{ .Role }}
+{{ .Content }}<|im_end|>
+{{ end }}<|im_start|>assistant
+"""
+
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+PARAMETER temperature 0
+PARAMETER num_ctx 8192

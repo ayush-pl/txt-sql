@@ -1,0 +1,150 @@
+{"id": "spider-dev-dev-101", "pred_sql": "SELECT T1.Make, T1.Year FROM car_names AS T1 INNER JOIN cars_data AS T2 ON T1.MakeId = T2.Id ORDER BY T2.Year ASC LIMIT 1"}
+{"id": "spider-dev-dev-1013", "pred_sql": "SELECT COUNT(*), Citizenship FROM singer GROUP BY Citizenship"}
+{"id": "spider-dev-dev-1021", "pred_sql": "SELECT DISTINCT T2.Name FROM song AS T1 JOIN singer AS T2 ON T1.Singer_ID = T2.Singer_ID WHERE T1.Sales > 300000"}
+{"id": "spider-dev-dev-1024", "pred_sql": "SELECT T1.Name, sum(T2.Sales) FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID = T2.Singer_ID GROUP BY T1.Name"}
+{"id": "spider-dev-dev-1030", "pred_sql": "SELECT count(*) FROM Other_Available_Features"}
+{"id": "spider-dev-dev-108", "pred_sql": "SELECT T2.Country FROM car_makers AS T1 INNER JOIN countries AS T2 ON T1.Country = T2.CountryId GROUP BY T1.Country ORDER BY COUNT(T1.Maker) DESC LIMIT 1"}
+{"id": "spider-dev-dev-13", "pred_sql": "SELECT T1.Song_Name FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.Singer_ID = T2.Singer_ID WHERE T1.Age > (SELECT avg(Age) FROM singer)"}
+{"id": "spider-dev-dev-131", "pred_sql": "SELECT T1.Horsepower, T2.Make FROM cars_data AS T1 INNER JOIN car_names AS T2 ON T1.Id = T2.MakeId WHERE T1.Cylinders = 3 ORDER BY T1.Horsepower DESC LIMIT 1"}
+{"id": "spider-dev-dev-142", "pred_sql": "SELECT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model GROUP BY T1.Model ORDER BY COUNT(T2.MakeId) DESC LIMIT 1"}
+{"id": "spider-dev-dev-150", "pred_sql": "SELECT T1.Maker, T1.Id FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker GROUP BY T1.Maker HAVING COUNT(*) > 3"}
+{"id": "spider-dev-dev-160", "pred_sql": "SELECT COUNT(*) FROM cars_data WHERE accelerate > (SELECT max(accelerate) FROM cars_data)"}
+{"id": "spider-dev-dev-175", "pred_sql": "SELECT T1.Id, T1.Maker FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker GROUP BY T2.Maker HAVING COUNT(*) >= 2 INTERSECT SELECT Id, Maker FROM car_makers WHERE Id > 3"}
+{"id": "spider-dev-dev-179", "pred_sql": "SELECT Country FROM airlines WHERE Airline = \"JetBlue Airways\""}
+{"id": "spider-dev-dev-18", "pred_sql": "SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1"}
+{"id": "spider-dev-dev-182", "pred_sql": "SELECT Abbreviation FROM airlines WHERE Airline = \"JetBlue Airways\""}
+{"id": "spider-dev-dev-189", "pred_sql": "SELECT count(*) FROM airports"}
+{"id": "spider-dev-dev-19", "pred_sql": "SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1"}
+{"id": "spider-dev-dev-199", "pred_sql": "SELECT AirportName FROM airports WHERE AirportCode = 'AKO'"}
+{"id": "spider-dev-dev-20", "pred_sql": "SELECT count(*) FROM concert WHERE YEAR = 2014 OR YEAR = 2015"}
+{"id": "spider-dev-dev-203", "pred_sql": "SELECT count(*) FROM flights WHERE SourceAirport = 'APG'"}
+{"id": "spider-dev-dev-212", "pred_sql": "SELECT count(*) FROM airports AS T1 JOIN flights AS T2 ON T1.airportcode = T2.sourceairport WHERE T1.city = \"Aberdeen\" AND T2.destairport = \"ASH\""}
+{"id": "spider-dev-dev-214", "pred_sql": "SELECT count(*) FROM flights AS T1 JOIN airlines AS T2 ON T1.Airline = T2.uid WHERE T2.Airline = \"JetBlue Airways\""}
+{"id": "spider-dev-dev-215", "pred_sql": "SELECT count(*) FROM flights WHERE DestAirport = 'ASY' AND Airline = (SELECT uid FROM airlines WHERE Airline = 'United Airlines')"}
+{"id": "spider-dev-dev-227", "pred_sql": "SELECT DestAirport FROM flights GROUP BY DestAirport ORDER BY count(*) ASC LIMIT 1"}
+{"id": "spider-dev-dev-229", "pred_sql": "SELECT T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.Airline GROUP BY T2.Airline ORDER BY count(*) DESC LIMIT 1"}
+{"id": "spider-dev-dev-23", "pred_sql": "SELECT count(*), T1.Stadium_ID FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Stadium_ID"}
+{"id": "spider-dev-dev-248", "pred_sql": "SELECT FlightNo FROM flights WHERE SourceAirport = 'APG'"}
+{"id": "spider-dev-dev-25", "pred_sql": "SELECT t1.name, t1.capacity FROM stadium AS t1 JOIN concert AS t2 ON t1.stadium_id = t2.stadium_id WHERE t2.year > 2013 GROUP BY t1.stadium_id ORDER BY count(*) DESC LIMIT 1"}
+{"id": "spider-dev-dev-251", "pred_sql": "SELECT T1.FlightNo FROM flights AS T1 JOIN airports AS T2 ON T1.SourceAirport = T2.AirportCode WHERE T2.City = \"Aberdeen \""}
+{"id": "spider-dev-dev-258", "pred_sql": "SELECT AirportName FROM airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM flights UNION SELECT DestAirport FROM flights)"}
+{"id": "spider-dev-dev-267", "pred_sql": "SELECT count(*), LOCATION FROM shop GROUP BY LOCATION"}
+{"id": "spider-dev-dev-268", "pred_sql": "SELECT count(*), LOCATION FROM shop GROUP BY LOCATION"}
+{"id": "spider-dev-dev-274", "pred_sql": "SELECT name, LOCATION, district FROM shop ORDER BY number_products DESC"}
+{"id": "spider-dev-dev-279", "pred_sql": "SELECT T1.name FROM employee AS T1 JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id ORDER BY T2.bonus DESC LIMIT 1"}
+{"id": "spider-dev-dev-28", "pred_sql": "SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)"}
+{"id": "spider-dev-dev-292", "pred_sql": "SELECT * FROM hiring"}
+{"id": "spider-dev-dev-308", "pred_sql": "SELECT count(*) FROM templates AS t JOIN documents AS d ON t.template_id = d.template_id WHERE t.template_type_code = \"PPT\""}
+{"id": "spider-dev-dev-309", "pred_sql": "SELECT T1.template_id, count(*) FROM Documents AS T1 JOIN templates AS T2 ON T1.template_id = T2.template_id GROUP BY T1.template_id"}
+{"id": "spider-dev-dev-322", "pred_sql": "SELECT DISTINCT template_type_code FROM ref_template_types"}
+{"id": "spider-dev-dev-341", "pred_sql": "SELECT T1.template_type_code, count(*) FROM ref_template_types AS T1 JOIN templates AS T2 ON T1.template_type_code = T2.template_type_code GROUP BY T1.template_type_code"}
+{"id": "spider-dev-dev-345", "pred_sql": "SELECT template_type_code FROM ref_template_types EXCEPT SELECT T1.template_type_code FROM templates AS T1 JOIN documents AS T2 ON T1.template_id = T2.template_id"}
+{"id": "spider-dev-dev-346", "pred_sql": "SELECT template_type_code FROM ref_template_types EXCEPT SELECT T1.template_type_code FROM ref_template_types AS T1 JOIN templates AS T2 ON T1.template_type_code = T2.template_type_code"}
+{"id": "spider-dev-dev-349", "pred_sql": "SELECT template_type_description FROM ref_template_types WHERE template_type_code = \"AD\""}
+{"id": "spider-dev-dev-360", "pred_sql": "SELECT count(*) FROM documents AS t1 JOIN paragraphs AS t2 ON t1.document_id = t2.document_id WHERE t1.document_name = \"Summer Show\""}
+{"id": "spider-dev-dev-367", "pred_sql": "SELECT document_id, count(*) FROM paragraphs GROUP BY document_id ORDER BY document_id"}
+{"id": "spider-dev-dev-370", "pred_sql": "SELECT T1.document_id, T1.document_name, count(*) FROM documents AS T1 JOIN paragraphs AS T2 ON T1.document_id = T2.document_id GROUP BY T1.document_id"}
+{"id": "spider-dev-dev-375", "pred_sql": "SELECT document_id FROM paragraphs GROUP BY document_id ORDER BY count(*) ASC LIMIT 1"}
+{"id": "spider-dev-dev-390", "pred_sql": "SELECT Name FROM teacher WHERE Age = 32 OR Age = 33"}
+{"id": "spider-dev-dev-397", "pred_sql": "SELECT Hometown FROM teacher GROUP BY Hometown HAVING COUNT(*) >= 2"}
+{"id": "spider-dev-dev-401", "pred_sql": "SELECT T2.Name, T1.Course FROM course AS T1 JOIN course_arrange AS T2 ON T1.Course_ID = T2.Course_ID ORDER BY T2.Name"}
+{"id": "spider-dev-dev-404", "pred_sql": "SELECT T1.name FROM teacher AS T1 JOIN course_arrange AS T2 ON T1.teacher_id = T2.teacher_id JOIN course AS T3 ON T2.course_id = T3.course_id WHERE T3.course = \"Math\""}
+{"id": "spider-dev-dev-405", "pred_sql": "SELECT T2.Name, COUNT(*) FROM course_arrange AS T1 JOIN teacher AS T2 ON T1.teacher_id = T2.teacher_id GROUP BY T2.Name"}
+{"id": "spider-dev-dev-407", "pred_sql": "SELECT T1.Name FROM teacher AS T1 JOIN course_arrange AS T2 ON T1.Teacher_ID = T2.Teacher_ID GROUP BY T2.Teacher_ID HAVING COUNT(*) >= 2"}
+{"id": "spider-dev-dev-409", "pred_sql": "SELECT name FROM teacher WHERE teacher_id NOT IN (SELECT teacher_id FROM course_arrange)"}
+{"id": "spider-dev-dev-413", "pred_sql": "SELECT avg(Age) FROM visitor WHERE Level_of_membership <= 4"}
+{"id": "spider-dev-dev-416", "pred_sql": "SELECT avg(num_of_staff) FROM museum WHERE open_year < 2009"}
+{"id": "spider-dev-dev-44", "pred_sql": "SELECT count(*) FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID WHERE T1.capacity = (SELECT max(capacity) FROM stadium)"}
+{"id": "spider-dev-dev-507", "pred_sql": "SELECT line_1, line_2 FROM addresses"}
+{"id": "spider-dev-dev-51", "pred_sql": "SELECT count(*) FROM Has_Pet AS T1 JOIN Student AS T2 ON T1.StuID = T2.StuID WHERE T2.age > 20"}
+{"id": "spider-dev-dev-513", "pred_sql": "SELECT zip_postcode FROM addresses WHERE city = \"Port Chelsea\""}
+{"id": "spider-dev-dev-515", "pred_sql": "SELECT T1.department_name, T1.department_id FROM DEPARTMENTS AS T1 JOIN DEGREE_PROGRAMS AS T2 ON T1.department_id = T2.department_id GROUP BY T1.department_id ORDER BY count(*) DESC LIMIT 1"}
+{"id": "spider-dev-dev-522", "pred_sql": "SELECT count(*) FROM degree_programs AS T1 JOIN departments AS T2 ON T1.department_id = T2.department_id WHERE T2.department_name = \"engineering\""}
+{"id": "spider-dev-dev-545", "pred_sql": "SELECT T1.course_name FROM courses AS T1 JOIN student_enrolment_courses AS T2 ON T1.course_id = T2.course_id"}
+{"id": "spider-dev-dev-548", "pred_sql": "SELECT T1.course_name FROM courses AS T1 JOIN student_enrolment_courses AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name ORDER BY count(*) DESC LIMIT 1"}
+{"id": "spider-dev-dev-549", "pred_sql": "SELECT T1.last_name FROM students AS T1 JOIN addresses AS T2 ON T1.current_address_id = T2.address_id WHERE T2.state_province_county = \"North Carolina\" EXCEPT SELECT T1.last_name FROM students AS T1 JOIN student_enrolment AS T2 ON T1.student_id = T2.student_id"}
+{"id": "spider-dev-dev-550", "pred_sql": "SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id = T2.address_id WHERE T2.state_province_county = \"North Carolina\" EXCEPT SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id = T2.address_id JOIN Student_Enrolment AS T3 ON T1.student_id = T3.student_id"}
+{"id": "spider-dev-dev-552", "pred_sql": "SELECT T1.transcript_date, T1.transcript_id FROM transcripts AS T1 JOIN transcript_contents AS T2 ON T1.transcript_id = T2.transcript_id GROUP BY T1.transcript_id HAVING count(*) >= 2"}
+{"id": "spider-dev-dev-560", "pred_sql": "SELECT T1.first_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.permanent_address_id = T2.address_id JOIN Addresses AS T3 ON T1.current_address_id = T3.address_id WHERE T2.line_1 != T3.line_1"}
+{"id": "spider-dev-dev-561", "pred_sql": "SELECT T1.address_id, T1.line_1, T1.line_2, T1.line_3 FROM addresses AS T1 JOIN students AS T2 ON T1.address_id = T2.current_address_id GROUP BY T1.address_id ORDER BY count(*) DESC LIMIT 1"}
+{"id": "spider-dev-dev-563", "pred_sql": "SELECT avg(transcript_date) FROM transcripts"}
+{"id": "spider-dev-dev-565", "pred_sql": "SELECT transcript_date, other_details FROM transcripts ORDER BY transcript_date LIMIT 1"}
+{"id": "spider-dev-dev-568", "pred_sql": "SELECT count(*) FROM transcripts"}
+{"id": "spider-dev-dev-590", "pred_sql": "SELECT count(*) FROM cartoon WHERE Written_by = \"Joseph Kuhr\""}
+{"id": "spider-dev-dev-594", "pred_sql": "SELECT title FROM cartoon WHERE directed_by = 'Ben Jones' OR directed_by = 'Brandon Vietti'"}
+{"id": "spider-dev-dev-599", "pred_sql": "SELECT Content FROM TV_Channel WHERE series_name = \"Sky Radio\""}
+{"id": "spider-dev-dev-601", "pred_sql": "SELECT Package_Option FROM TV_Channel WHERE series_name = \"Sky Radio\""}
+{"id": "spider-dev-dev-621", "pred_sql": "SELECT Weekly_Rank FROM TV_series WHERE Episode = \"A Love of a Lifetime\""}
+{"id": "spider-dev-dev-624", "pred_sql": "SELECT T1.series_name FROM TV_channel AS T1 INNER JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T2.Episode = 'A Love of a Lifetime'"}
+{"id": "spider-dev-dev-628", "pred_sql": "SELECT count(*), Directed_by FROM Cartoon GROUP BY Directed_by"}
+{"id": "spider-dev-dev-629", "pred_sql": "SELECT Production_code, Channel FROM Cartoon ORDER BY Original_air_date DESC LIMIT 1"}
+{"id": "spider-dev-dev-639", "pred_sql": "SELECT Pixel_aspect_ratio_PAR, Country FROM TV_Channel WHERE Language != 'English'"}
+{"id": "spider-dev-dev-643", "pred_sql": "SELECT id FROM TV_channel EXCEPT SELECT T1.id FROM TV_channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Directed_by = 'Ben Jones'"}
+{"id": "spider-dev-dev-652", "pred_sql": "SELECT Final_Table_Made, Best_Finish FROM poker_player"}
+{"id": "spider-dev-dev-66", "pred_sql": "SELECT DISTINCT T1.Fname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID WHERE T3.PetType = \"dog\" EXCEPT SELECT DISTINCT T1.Fname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID WHERE T3.PetType = \"cat\""}
+{"id": "spider-dev-dev-661", "pred_sql": "SELECT T2.Name FROM poker_player AS T1 JOIN people AS T2 ON T1.People_ID = T2.People_ID WHERE T1.Earnings > 300000"}
+{"id": "spider-dev-dev-662", "pred_sql": "SELECT T2.Name FROM poker_player AS T1 JOIN people AS T2 ON T1.People_ID = T2.People_ID WHERE T1.Earnings > 300000"}
+{"id": "spider-dev-dev-669", "pred_sql": "SELECT avg(T1.Earnings) FROM poker_player AS T1 JOIN people AS T2 ON T1.People_ID = T2.People_ID WHERE T2.Height > 200"}
+{"id": "spider-dev-dev-673", "pred_sql": "SELECT Nationality, COUNT(*) FROM people GROUP BY Nationality"}
+{"id": "spider-dev-dev-679", "pred_sql": "SELECT Name, Birth_Date FROM people ORDER BY Name ASC"}
+{"id": "spider-dev-dev-683", "pred_sql": "SELECT Name FROM people WHERE People_ID NOT IN (SELECT People_ID FROM poker_player)"}
+{"id": "spider-dev-dev-686", "pred_sql": "SELECT count(DISTINCT Nationality) FROM people"}
+{"id": "spider-dev-dev-687", "pred_sql": "SELECT count(DISTINCT state) FROM AREA_CODE_STATE"}
+{"id": "spider-dev-dev-692", "pred_sql": "SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway'"}
+{"id": "spider-dev-dev-695", "pred_sql": "SELECT T1.contestant_number, T1.contestant_name FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number GROUP BY T2.contestant_number ORDER BY count(*) ASC LIMIT 1"}
+{"id": "spider-dev-dev-7", "pred_sql": "SELECT Name, Song_release_year FROM singer WHERE Age = (SELECT min(Age) FROM singer)"}
+{"id": "spider-dev-dev-702", "pred_sql": "SELECT Name FROM country WHERE IndepYear > 1950"}
+{"id": "spider-dev-dev-71", "pred_sql": "SELECT AVG(T1.age), MAX(T1.age), T2.PetType FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID GROUP BY T3.PetType"}
+{"id": "spider-dev-dev-717", "pred_sql": "SELECT Region, Population FROM country WHERE Name = 'Angola'"}
+{"id": "spider-dev-dev-718", "pred_sql": "SELECT avg(LifeExpectancy) FROM country WHERE Region = 'Central Africa'"}
+{"id": "spider-dev-dev-72", "pred_sql": "SELECT AVG(T1.age), MAX(T1.age), T2.PetType FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID GROUP BY T2.PetType"}
+{"id": "spider-dev-dev-725", "pred_sql": "SELECT AVG(LifeExpectancy) FROM country WHERE GovernmentForm = 'Republic' AND Region = 'Africa'"}
+{"id": "spider-dev-dev-729", "pred_sql": "SELECT sum(T1.Population) FROM city AS T1 JOIN country AS T2 ON T1.CountryCode = T2.Code WHERE T1.District = \"Gelderland\""}
+{"id": "spider-dev-dev-743", "pred_sql": "SELECT T1.Continent FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode GROUP BY T1.Continent ORDER BY COUNT(T2.Language) DESC LIMIT 1"}
+{"id": "spider-dev-dev-750", "pred_sql": "SELECT count(DISTINCT T1.Continent) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = 'Chinese'"}
+{"id": "spider-dev-dev-751", "pred_sql": "SELECT count(DISTINCT T1.Continent) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = 'Chinese'"}
+{"id": "spider-dev-dev-755", "pred_sql": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.IsOfficial = 'T' AND T2.Language = 'English' OR T2.Language = 'Dutch'"}
+{"id": "spider-dev-dev-757", "pred_sql": "SELECT T1.Language FROM countrylanguage AS T1 JOIN country AS T2 ON T1.CountryCode = T2.Code WHERE T2.Continent = 'Asia' GROUP BY T1.Language ORDER BY COUNT(T1.Language) DESC LIMIT 1"}
+{"id": "spider-dev-dev-758", "pred_sql": "SELECT T1.Language FROM countrylanguage AS T1 JOIN country AS T2 ON T1.CountryCode = T2.Code WHERE T2.GovernmentForm = 'Republic' GROUP BY T1.Language HAVING COUNT(T1.CountryCode) = 1"}
+{"id": "spider-dev-dev-763", "pred_sql": "SELECT name, population, lifeexpectancy FROM country WHERE continent = 'Asia' ORDER BY surfacearea DESC LIMIT 1"}
+{"id": "spider-dev-dev-774", "pred_sql": "SELECT name FROM country WHERE continent = 'Africa' AND population < (SELECT max(population) FROM country WHERE continent = 'Asia')"}
+{"id": "spider-dev-dev-776", "pred_sql": "SELECT name FROM country WHERE population > (SELECT max(population) FROM country WHERE continent = 'Africa') AND continent = 'Asia'"}
+{"id": "spider-dev-dev-779", "pred_sql": "SELECT Code FROM country WHERE Code NOT IN (SELECT CountryCode FROM countrylanguage WHERE Language = 'English')"}
+{"id": "spider-dev-dev-787", "pred_sql": "SELECT DISTINCT T3.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode JOIN city AS T3 ON T3.CountryCode = T2.CountryCode WHERE T1.Continent = 'Asia' AND T2.IsOfficial = 'T' AND T2.Language = 'Chinese'"}
+{"id": "spider-dev-dev-790", "pred_sql": "SELECT population, name, headofstate FROM country ORDER BY surfacearea DESC LIMIT 1"}
+{"id": "spider-dev-dev-799", "pred_sql": "SELECT continent, sum(population), avg(lifeexpectancy) FROM country GROUP BY continent HAVING avg(lifeexpectancy) < 72"}
+{"id": "spider-dev-dev-80", "pred_sql": "SELECT count(*), StuID FROM Has_Pet GROUP BY StuID"}
+{"id": "spider-dev-dev-802", "pred_sql": "SELECT Name FROM country ORDER BY Population DESC LIMIT 3"}
+{"id": "spider-dev-dev-81", "pred_sql": "SELECT T1.fname, T1.sex FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T2.StuID HAVING count(*) > 1"}
+{"id": "spider-dev-dev-819", "pred_sql": "SELECT COUNT(CountryCode) FROM countrylanguage WHERE Language = 'Spanish' AND IsOfficial = 'T'"}
+{"id": "spider-dev-dev-82", "pred_sql": "SELECT T1.fname, T1.sex FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T2.StuID HAVING count(*) > 1"}
+{"id": "spider-dev-dev-827", "pred_sql": "SELECT Name FROM conductor WHERE Nationality != \"USA\""}
+{"id": "spider-dev-dev-833", "pred_sql": "SELECT max(Share), min(Share) FROM performance WHERE TYPE != \"Live final\""}
+{"id": "spider-dev-dev-841", "pred_sql": "SELECT T1.Name, T2.Orchestra FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID"}
+{"id": "spider-dev-dev-848", "pred_sql": "SELECT Record_Company, COUNT(*) FROM orchestra GROUP BY Record_Company"}
+{"id": "spider-dev-dev-849", "pred_sql": "SELECT Record_company, COUNT(*) FROM orchestra GROUP BY Record_company"}
+{"id": "spider-dev-dev-860", "pred_sql": "SELECT DISTINCT T1.Year_of_founded FROM orchestra AS T1 JOIN performance AS T2 ON T1.Orchestra_ID = T2.Orchestra_ID GROUP BY T2.Orchestra_ID HAVING COUNT(*) > 1"}
+{"id": "spider-dev-dev-862", "pred_sql": "SELECT count(*) FROM Highschooler"}
+{"id": "spider-dev-dev-869", "pred_sql": "SELECT grade FROM Highschooler WHERE name = \"Kyle\""}
+{"id": "spider-dev-dev-870", "pred_sql": "SELECT name FROM Highschooler WHERE grade = 10"}
+{"id": "spider-dev-dev-880", "pred_sql": "SELECT grade FROM Highschooler GROUP BY grade HAVING COUNT(*) >= 4"}
+{"id": "spider-dev-dev-882", "pred_sql": "SELECT student_id, count(*) FROM Friend GROUP BY student_id"}
+{"id": "spider-dev-dev-89", "pred_sql": "SELECT T1.Continent, T1.ContId, COUNT(T2.CountryId) FROM continents AS T1 INNER JOIN countries AS T2 ON T1.ContId = T2.Continent GROUP BY T1.Continent, T1.ContId"}
+{"id": "spider-dev-dev-894", "pred_sql": "SELECT id FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend)"}
+{"id": "spider-dev-dev-897", "pred_sql": "SELECT name FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend)"}
+{"id": "spider-dev-dev-904", "pred_sql": "SELECT T1.name, count(*) FROM Highschooler AS T1 JOIN Likes AS T2 ON T1.id = T2.student_id GROUP BY T2.student_id"}
+{"id": "spider-dev-dev-907", "pred_sql": "SELECT T1.name FROM highschooler AS T1 JOIN likes AS T2 ON T1.id = T2.student_id GROUP BY T2.student_id ORDER BY count(*) DESC LIMIT 1"}
+{"id": "spider-dev-dev-909", "pred_sql": "SELECT T1.name FROM Highschooler AS T1 JOIN Likes AS T2 ON T1.id = T2.student_id GROUP BY T2.student_id HAVING COUNT(*) >= 2"}
+{"id": "spider-dev-dev-914", "pred_sql": "SELECT avg(T1.grade) FROM highschooler AS T1 JOIN friend AS T2 ON T1.id = T2.student_id"}
+{"id": "spider-dev-dev-915", "pred_sql": "SELECT avg(T1.grade) FROM highschooler AS T1 JOIN friend AS T2 ON T1.id = T2.student_id"}
+{"id": "spider-dev-dev-918", "pred_sql": "SELECT state FROM owners INTERSECT SELECT state FROM professionals"}
+{"id": "spider-dev-dev-925", "pred_sql": "SELECT t1.name FROM dogs AS t1 JOIN treatments AS t2 ON t1.dog_id = t2.dog_id GROUP BY t1.name HAVING sum(t2.cost_of_treatment) <= 1000"}
+{"id": "spider-dev-dev-935", "pred_sql": "SELECT T1.breed_name FROM breeds AS T1 JOIN dogs AS T2 ON T1.breed_code = T2.breed_code GROUP BY T1.breed_name ORDER BY count(*) DESC LIMIT 1"}
+{"id": "spider-dev-dev-938", "pred_sql": "SELECT T2.treatment_type_description FROM treatments AS T1 JOIN treatment_types AS T2 ON T1.treatment_type_code = T2.treatment_type_code GROUP BY T1.treatment_type_code ORDER BY sum(T1.cost_of_treatment) LIMIT 1"}
+{"id": "spider-dev-dev-943", "pred_sql": "SELECT T1.professional_id, T1.cell_number FROM professionals AS T1 JOIN treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING count(*) >= 2"}
+{"id": "spider-dev-dev-965", "pred_sql": "SELECT date_arrived, date_departed FROM Dogs"}
+{"id": "spider-dev-dev-966", "pred_sql": "SELECT count(DISTINCT dog_id) FROM treatments"}
+{"id": "spider-dev-dev-967", "pred_sql": "SELECT count(DISTINCT dog_id) FROM treatments"}
+{"id": "spider-dev-dev-979", "pred_sql": "SELECT count(*) FROM Dogs WHERE dog_id NOT IN ( SELECT dog_id FROM Treatments )"}
+{"id": "spider-dev-dev-989", "pred_sql": "SELECT max(age) FROM Dogs"}
+{"id": "spider-dev-dev-991", "pred_sql": "SELECT charge_type, charge_amount FROM CHARGES"}

@@ -1,0 +1,8 @@
+{
+ "model": "sqlforge",
+ "base_url": "http://127.0.0.1:8000/v1",
+ "column_fix": true,
+ "prompt_fingerprint": "3df9188803b7",
+ "n": 150,
+ "created": "2026-11-21T18:12:22+00:00"
+}

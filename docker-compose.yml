@@ -1,0 +1,41 @@
+# Whole SQLForge stack except the GPU model server:
+#   API (:8080) + UI (:8501) + Langfuse (:3000) + Prometheus (:9090) + Grafana (:3001)
+#
+#   python scripts/init_observability.py                                  # one-time secrets
+#   docker compose --env-file observability/.env up -d --build
+#
+# The model runs in vLLM on the GPU host (WSL2 on this laptop): scripts/serve_vllm.sh.
+# Containers reach it through host.docker.internal:8000. Or use scripts/up.ps1 for everything.
+name: sqlforge
+include:
+  - path: observability/docker-compose.yml
+    env_file: observability/.env
+
+services:
+  api:
+    build: .
+    image: sqlforge-app:latest
+    restart: unless-stopped
+    ports: ["127.0.0.1:8080:8080"]
+    environment:
+      VLLM_BASE_URL: http://host.docker.internal:8000/v1
+      MODEL_NAME: sqlforge
+      LANGFUSE_HOST: http://langfuse-web:3000
+      LANGFUSE_PUBLIC_URL: http://localhost:3000   # for trace links opened in the browser
+      LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY}
+      LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY}
+    volumes:
+      - ./data:/srv/sqlforge/data:ro        # read-only: databases + prepared JSONL
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    depends_on: [langfuse-web]
+
+  ui:
+    image: sqlforge-app:latest
+    restart: unless-stopped
+    command: ["streamlit", "run", "app/ui.py", "--server.port", "8501", "--server.address", "0.0.0.0",
+              "--server.headless", "true", "--browser.gatherUsageStats", "false"]
+    ports: ["127.0.0.1:8501:8501"]
+    environment:
+      SQLFORGE_API: http://api:8080
+    healthcheck: { test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=4)"] }
+    depends_on: [api]

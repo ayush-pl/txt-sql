@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv-*/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets
+.env
+
+# Data & artifacts (large, reproducible from scripts)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+outputs/
+checkpoints/
+models/
+mlruns/
+mlflow.db
+mlartifacts/
+wandb/
+*.gguf
+*.safetensors
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

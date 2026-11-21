@@ -1,0 +1,14 @@
+# Keep the build context tiny: models, data, outputs and envs never go into the image.
+**
+!requirements-service.txt
+!app/
+!data/__init__.py
+!data/prompt.py
+!data/schema.py
+!data/schema_linker.py
+!data/prepare.py
+!eval/__init__.py
+!eval/metrics.py
+!eval/generate.py
+!eval/self_correct.py
+**/__pycache__

@@ -1,0 +1,14 @@
+# SQLForge-3B GGUF Q8_0 (llama.cpp quantization) for Ollama:
+#   ollama create sqlforge-q8-0 -f serving/ollama/Modelfile.Q8_0
+FROM ../../models/gguf/sqlforge-3b-Q8_0.gguf
+
+# Qwen2.5 ChatML template (same as the HF tokenizer's chat template, without tool calls)
+TEMPLATE """{{- range .Messages }}<|im_start|>{{ .Role }}
+{{ .Content }}<|im_end|>
+{{ end }}<|im_start|>assistant
+"""
+
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+PARAMETER temperature 0
+PARAMETER num_ctx 8192

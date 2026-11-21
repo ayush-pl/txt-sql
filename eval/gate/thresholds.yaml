@@ -1,0 +1,9 @@
+# Eval gate thresholds (python -m eval.gate check). The gate set is 150 Spider dev questions,
+# so one question = 0.67 EX points and the standard error at EX~80 is ~3.3 points. Floors sit
+# below the current model's score by that margin plus a little: they catch real regressions
+# (e.g. a broken prompt, a bad merge, an over-aggressive quantization) without flapping on noise.
+# Reference points: base Qwen2.5-Coder-3B scored 71.8 EX on full Spider dev.
+min_ex: 74.0
+min_valid_sql: 90.0
+min_ex_by_difficulty:
+  easy: 80.0

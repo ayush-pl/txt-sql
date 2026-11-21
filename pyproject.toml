@@ -1,0 +1,80 @@
+[project]
+name = "sqlforge"
+version = "0.1.0"
+description = "Fine-tuned text-to-SQL LLM with evaluation, observability and optimized serving"
+readme = "README.md"
+requires-python = ">=3.11"
+# Core: pure-Python deps shared by every environment (Windows 3.13 and WSL 3.12).
+dependencies = [
+    "sqlglot>=25",
+    "pandas>=2.2",
+    "pyyaml>=6",
+    "python-dotenv>=1",
+    "tqdm>=4.66",
+    "rich>=13",
+]
+
+# NOTE: PyTorch is installed separately from the CUDA 12.8 index (RTX 5060 / Blackwell needs cu128+):
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+[project.optional-dependencies]
+# Windows (3.13): data prep, eval harness, API, UI
+app = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "streamlit>=1.38",
+    "openai>=1.40",          # client for vLLM's OpenAI-compatible endpoint
+    "langfuse>=2.50",
+    "prometheus-client>=0.20",
+    "rank-bm25>=0.2",        # schema linking
+    "datasets>=3",
+    "huggingface-hub>=0.25",
+    "gdown>=5",              # Spider download (Google Drive)
+    "transformers>=4.45",    # local baseline inference on Windows
+    "accelerate>=1.0",
+]
+# WSL (3.12): fine-tuning
+train = [
+    "transformers>=4.45",
+    "peft>=0.13",
+    "trl>=0.11",
+    "accelerate>=1.0",
+    "bitsandbytes>=0.44",
+    "datasets>=3",
+    "mlflow>=2.16",
+    # unsloth: install per its docs for your torch/CUDA version
+]
+# WSL (3.12): serving & quantization
+serve = [
+    "vllm>=0.6",
+    "locust>=2.31",
+]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["data/raw", "data/processed", "outputs", "models", "notebooks"]
+
+[tool.ruff.lint]
+# pyflakes, pycodestyle, isort, bugbear, pyupgrade, ruff-specific
+select = ["F", "E", "W", "I", "B", "UP", "RUF"]
+ignore = [
+    "E501",    # long lines: formatter's job, and some SQL strings are long
+    "RUF001", "RUF002", "RUF003",  # ambiguous unicode (×, –, emoji) in comments/docs/UI
+]
+
+[tool.ruff.lint.per-file-ignores]
+"app/api.py" = ["E402"]   # .env must load before importing app.service
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["data*", "training*", "eval*", "serving*", "app*"]
