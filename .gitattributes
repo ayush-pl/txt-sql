@@ -1,0 +1,6 @@
+# Keep LF line endings in the working tree, even with core.autocrlf=true on Windows:
+# the .sh scripts run inside WSL2 (bash fails on CRLF), and Dockerfile / CI files run on Linux.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.sqlite binary
+*.svg text eol=lf
