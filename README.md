@@ -32,6 +32,13 @@ powershell -ExecutionPolicy Bypass -File scripts\down.ps1
 ```
 UI http://localhost:8501 · API docs http://localhost:8080/docs · Langfuse http://localhost:3000 · Grafana http://localhost:3001
 
+### Live demo (Hugging Face Space, CPU)
+[`space/demo.py`](space/demo.py) is a Gradio app that runs the same pipeline (guardrails, column fix, self-correction) with the Q4_K_M GGUF in llama.cpp on 2 CPU cores, plus the 18 bundled Spider databases. Each answer takes about 10–25 s. Hosting a Gradio Space on `cpu-basic` needs a Hugging Face PRO account; locally, run `$env:MODEL_PATH="models/gguf/sqlforge-3b-Q4_K_M.gguf"; python space/demo.py`.
+```powershell
+python scripts/push_to_hub.py --repo <user>/sqlforge-3b --public --with-gguf          # the Space downloads the GGUF from here
+python scripts/deploy_space.py --space <user>/sqlforge --model-repo <user>/sqlforge-3b  # builds and uploads the Space
+```
+
 ```bash
 pytest -q                      # 56 tests: metrics, guardrails, pipeline (fake LLM), schema linking, eval gate
 python -m eval.gate check      # the CI accuracy gate

@@ -1,0 +1,9 @@
+# Hugging Face Space (Gradio SDK, CPU). Gradio itself is installed from sdk_version in README.md.
+# Prebuilt CPU wheels for llama-cpp-python, so the Space doesn't compile llama.cpp on every build.
+--extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+llama-cpp-python==0.3.36
+huggingface_hub>=0.25
+sqlglot>=25
+rank-bm25>=0.2
+pandas>=2.2
+tqdm>=4.66
