@@ -108,11 +108,13 @@ def answer(db_id: str, question: str, evidence: str | None = None, execute: bool
     dataset = "bird" if "/bird/" in databases().get(db_id, "").replace("\\", "/") else "spider"
     with tracer.attributes(trace_name="text2sql", tags=[db_id, dataset], metadata={"model": LLM_MODEL}),             tracer.observe("text2sql", input={"db_id": db_id, "question": question, "evidence": evidence},
                            metadata={"model": LLM_MODEL}) as root:
+        tracer.set_trace_io(root, input={"db_id": db_id, "question": question, "evidence": evidence})
         ans = _answer(db_id, question, evidence, execute, tracer)
         ans.trace_id = root.trace_id
-        root.update(output={"ok": ans.ok, "sql": ans.sql, "rows": len(ans.rows), "error": ans.error,
-                            "blocked_rule": ans.blocked_rule, "attempts": ans.attempts},
-                    level="DEFAULT" if ans.ok else ("WARNING" if ans.blocked_rule else "ERROR"))
+        out = {"ok": ans.ok, "sql": ans.sql, "rows": len(ans.rows), "error": ans.error,
+               "blocked_rule": ans.blocked_rule, "attempts": ans.attempts}
+        root.update(output=out, level="DEFAULT" if ans.ok else ("WARNING" if ans.blocked_rule else "ERROR"))
+        tracer.set_trace_io(root, output=out)
     return ans
 
 

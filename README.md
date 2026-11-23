@@ -32,12 +32,13 @@ powershell -ExecutionPolicy Bypass -File scripts\down.ps1
 ```
 UI http://localhost:8501 · API docs http://localhost:8080/docs · Langfuse http://localhost:3000 · Grafana http://localhost:3001
 
-### Live demo (Hugging Face Space, CPU)
-[`space/demo.py`](space/demo.py) is a Gradio app that runs the same pipeline (guardrails, column fix, self-correction) with the Q4_K_M GGUF in llama.cpp on 2 CPU cores, plus the 18 bundled Spider databases. Each answer takes about 10–25 s. Hosting a Gradio Space on `cpu-basic` needs a Hugging Face PRO account; locally, run `$env:MODEL_PATH="models/gguf/sqlforge-3b-Q4_K_M.gguf"; python space/demo.py`.
+### Demo app
+[`space/demo.py`](space/demo.py) is a Gradio page over the same pipeline (guardrails, column-name fix, self-correction) and the 18 bundled Spider databases, with an in-process LLM: the Q4_K_M GGUF in llama.cpp on CPU, or vLLM on a GPU. [`deploy/modal_app.py`](deploy/modal_app.py) serves it on [Modal](https://modal.com): currently 4 CPU cores, 4–15 s per answer; `SQLFORGE_HW=L4` switches to vLLM FP8 on an L4 GPU (Modal needs a payment method on the account for GPUs).
 ```powershell
-python scripts/push_to_hub.py --repo <user>/sqlforge-3b --public --with-gguf          # the Space downloads the GGUF from here
-python scripts/deploy_space.py --space <user>/sqlforge --model-repo <user>/sqlforge-3b  # builds and uploads the Space
+modal deploy deploy/modal_app.py                               # SQLFORGE_HW: cpu (default) | T4 | L4
+$env:MODEL_PATH="models/gguf/sqlforge-3b-Q4_K_M.gguf"; python space/demo.py   # locally
 ```
+`scripts/deploy_space.py` packages the same page as a Hugging Face Space (Gradio Spaces need HF PRO).
 
 ```bash
 pytest -q                      # 56 tests: metrics, guardrails, pipeline (fake LLM), schema linking, eval gate
@@ -59,6 +60,28 @@ Streamlit UI ───────► │ input guard ─► schema (+BM25 linki
 offline:  data prep · contamination check · QLoRA SFT (TRL, MLflow) · eval harness · error analysis
           quantization (FP8, AWQ, GGUF) · benchmarks · CI: lint, tests (3.12 + 3.13), eval gate, Docker build
 ```
+
+## Screenshots
+**Self-correction.** The first query fails on an ambiguous column; the error goes back to the model, which rewrites the query, and the second attempt succeeds (Attempts = 2, `repair_1` in the pipeline steps).
+
+<img src="docs/img/ui-self-correction1.png" alt="Self-corrected query with its result in the SQLForge UI">
+<img src="docs/img/ui-self-correction2.png" alt="Pipeline steps of the self-corrected query: execute fails, repair_1, execute succeeds">
+
+**Guardrails.** The model's SQL is treated as untrusted: when asked to delete data it writes `DELETE`, which is blocked before execution.
+
+<img src="docs/img/ui-guardrail.png" alt="DELETE query blocked by the sql_not_select guardrail">
+
+**Tracing (Langfuse).** Every request is a trace with one span per pipeline step, tagged by database and benchmark. Left: the self-corrected query above, where `execute` fails, the column-name fix can't help, and `repair_1` (a second LLM call with the error) produces SQL that runs; both LLM calls carry their token counts. Right: the trace list.
+
+<p>
+  <img src="docs/img/langfuse-trace.png" width="49%" alt="A Langfuse trace with the pipeline steps as spans">
+  <img src="docs/img/langfuse-traces.png" width="49%" alt="Langfuse trace list with latency, tokens and tags">
+</p>
+
+**Monitoring (Prometheus + Grafana).** Service metrics (throughput by outcome, latency, per-step p95, guardrail blocks, self-correction outcomes, feedback) and vLLM engine metrics (KV-cache, prefix-cache hit rate, time to first token).
+
+<img src="docs/img/grafana-api.png" alt="Grafana dashboard: SQLForge API metrics">
+<img src="docs/img/grafana-vllm.png" alt="Grafana dashboard: vLLM engine metrics">
 
 ## Repository layout
 | Path | What's in it |

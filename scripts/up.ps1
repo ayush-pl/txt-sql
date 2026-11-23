@@ -17,12 +17,35 @@ function Wait-Http($Url, $Name, $Seconds) {
 }
 
 Write-Host "[1/4] Docker"
-docker version --format "{{.Server.Version}}" 2>$null | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    Start-Process "C:\Program Files\Docker\Docker\Docker Desktop.exe"
-    for ($i = 0; $i -lt 60; $i++) { Start-Sleep 5; docker version --format "{{.Server.Version}}" 2>$null | Out-Null; if ($LASTEXITCODE -eq 0) { break } }
-    if ($LASTEXITCODE -ne 0) { throw "Docker engine did not start" }
+# probe through cmd: in Windows PowerShell 5.1 with ErrorActionPreference=Stop, a native command's
+# stderr ("daemon not running") becomes a terminating error before $LASTEXITCODE can be checked
+function Test-Docker { cmd /c "docker version --format {{.Server.Version}} >nul 2>&1"; return ($LASTEXITCODE -eq 0) }
+function Move-StaleDockerSockets {
+    # Docker Desktop deletes and recreates its AF_UNIX socket files on start. Since Windows updates
+    # KB5121794/KB5127694 (Nov 2026) deleting or renaming those files fails ("The file cannot be
+    # accessed by the system") and Docker quits with an error dialog. Renaming the folder that holds
+    # them still works, so move such folders aside while Docker is stopped; Docker recreates them.
+    if (Get-Process "com.docker.backend" -ErrorAction SilentlyContinue) { return }
+    $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
+    foreach ($dir in @("$env:LOCALAPPDATA\Docker\run", "$env:LOCALAPPDATA\docker-secrets-engine")) {
+        if (-not (Test-Path -LiteralPath $dir)) { continue }
+        $sockets = Get-ChildItem -LiteralPath $dir -Force -ErrorAction SilentlyContinue |
+            Where-Object { $_.Attributes -band [IO.FileAttributes]::ReparsePoint }
+        if ($sockets) {
+            Rename-Item -LiteralPath $dir -NewName ("{0}.stale-{1}" -f (Split-Path -Leaf $dir), $stamp)
+            Write-Host "  moved stale sockets aside: $dir"
+        }
+    }
 }
+if (-not (Test-Docker)) {
+    Move-StaleDockerSockets
+    Write-Host "  starting Docker Desktop..."
+    Start-Process "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+    $ok = $false
+    for ($i = 0; $i -lt 60; $i++) { Start-Sleep 5; if (Test-Docker) { $ok = $true; break } }
+    if (-not $ok) { throw "Docker engine did not start" }
+}
+Write-Host "  Docker is up"
 
 Write-Host "[2/4] Secrets"
 if (-not (Test-Path "observability\.env")) { & .venv\Scripts\python.exe scripts\init_observability.py }
@@ -39,8 +62,11 @@ if ($up) { Write-Host "  already running" } else {
 }
 
 Write-Host "[4/4] API, UI, Langfuse, Prometheus, Grafana"
-docker compose --env-file observability/.env up -d --build
-if ($LASTEXITCODE -ne 0) { throw "docker compose up failed" }
+$ErrorActionPreference = "Continue"  # compose prints progress on stderr
+docker compose --env-file observability/.env up -d --build 2>&1 | ForEach-Object { "$_" }
+$code = $LASTEXITCODE
+$ErrorActionPreference = "Stop"
+if ($code -ne 0) { throw "docker compose up failed" }
 Wait-Http "http://127.0.0.1:8080/health" "API" 180
 Wait-Http "http://127.0.0.1:8501/_stcore/health" "UI" 120
 Wait-Http "http://127.0.0.1:3000/api/public/health" "Langfuse" 240

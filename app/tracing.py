@@ -33,6 +33,9 @@ class NoopTracer:
     def observe(self, name: str, as_type: str = "span", **kw):
         yield _NoopObs()
 
+    def set_trace_io(self, obs, input=None, output=None) -> None:
+        pass
+
     def score(self, trace_id: str, name: str, value, comment: str | None = None) -> bool:
         return False
 
@@ -61,6 +64,19 @@ class LangfuseTracer:
     def observe(self, name: str, as_type: str = "span", **kw):
         with self.lf.start_as_current_observation(name=name, as_type=as_type, **kw) as obs:
             yield obs
+
+    def set_trace_io(self, obs, input=None, output=None) -> None:
+        """Trace-level input/output, shown in the trace list and header. SDK 5.x has no setter for
+        them, but the server still reads these OTel attributes from the root span."""
+        import json
+
+        try:
+            if input is not None:
+                obs._otel_span.set_attribute("langfuse.trace.input", json.dumps(input, default=str))
+            if output is not None:
+                obs._otel_span.set_attribute("langfuse.trace.output", json.dumps(output, default=str))
+        except Exception as e:  # tracing must never break a request
+            log.debug("could not set trace input/output: %s", e)
 
     def score(self, trace_id: str, name: str, value, comment: str | None = None) -> bool:
         # Public REST API instead of the SDK's create_score: SDK 5.x sends a payload the

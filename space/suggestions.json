@@ -1,0 +1,618 @@
+{
+ "car_1": [
+  {
+   "question": "How many countries does each continent have? List the continent id, continent name and the number of countries.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What model has the most different versions?",
+   "difficulty": "hard",
+   "repaired": false
+  }
+ ],
+ "concert_singer": [
+  {
+   "question": "What is the name and capacity for the stadium with highest average attendance?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What is the name and capacity for the stadium with the highest average attendance?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "How many concerts are there in year 2014 or 2015?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "For each stadium, how many concerts play there?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Show the stadium names without any concert.",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "What are the number of concerts that occurred in the stadium with the largest capacity ?",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "What is the name and capacity of the stadium with the most concerts after 2013 ?",
+   "difficulty": "extra",
+   "repaired": false
+  }
+ ],
+ "course_teach": [
+  {
+   "question": "Show the hometowns shared by at least two teachers.",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What are the names of the teachers who are aged either 32 or 33?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Show names of teachers and the number of courses they teach.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Show names of teachers that teach at least two courses.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What are the names of the people who teach math courses?",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "List the names of teachers who have not been arranged to teach courses.",
+   "difficulty": "hard",
+   "repaired": false
+  }
+ ],
+ "cre_Doc_Template_Mgt": [
+  {
+   "question": "What are the different template type codes?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What is the template type descriptions for template type code \"AD\".",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Count the number of documents that use the PPT template type.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Show all template ids and number of documents using each template.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Count the number of paragraphs in the document named 'Summer Show'.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Show all document ids and the number of paragraphs in each document. Order by document id.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What are the ids and names of each document, as well as the number of paragraphs in each?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What is the document id with least number of paragraphs?",
+   "difficulty": "hard",
+   "repaired": false
+  }
+ ],
+ "dog_kennels": [
+  {
+   "question": "How many dogs went through any treatments?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Count the number of dogs that went through a treatment.",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Tell me the age of the oldest dog.",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Find the id and cell phone of the professionals who operate two or more types of treatments.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "List the arrival date and the departure date for all the dogs.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "List each charge type and its amount.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Which states have both owners and professionals living there?",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "Tell me the number of dogs that have not received any treatment .",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "Which breed do the most dogs have? Give me the breed name.",
+   "difficulty": "extra",
+   "repaired": false
+  },
+  {
+   "question": "What is the description of the treatment type that costs the least money in total?",
+   "difficulty": "extra",
+   "repaired": false
+  }
+ ],
+ "employee_hire_evaluation": [
+  {
+   "question": "What is all the information about hiring?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Find the number of shops in each location.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "How many shops are there in each location?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Sort all the shops by number products in descending order, and return the name, location and district of each shop.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Find the name of the employee who got the highest one time bonus.",
+   "difficulty": "hard",
+   "repaired": false
+  }
+ ],
+ "flight_2": [
+  {
+   "question": "Which country does Airline \"JetBlue Airways\" belong to?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "How many airports do we have?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What is the airport name for airport 'AKO'?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "How many flights depart from 'APG'?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Give the flight numbers of flights leaving from APG.",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "How many 'United Airlines' flights go to Airport 'ASY'?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What are flight numbers of flights departing from City \"Aberdeen \"?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "How many flights fly from Aberdeen to Ashley?",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "Which airline has most number of flights?",
+   "difficulty": "extra",
+   "repaired": false
+  },
+  {
+   "question": "Which airports do not have departing or arriving flights?",
+   "difficulty": "extra",
+   "repaired": false
+  }
+ ],
+ "museum_visit": [
+  {
+   "question": "What is the average age of the visitors whose membership level is not higher than 4?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Find the average number of staff working for the museums that were open before 2009.",
+   "difficulty": "easy",
+   "repaired": false
+  }
+ ],
+ "network_1": [
+  {
+   "question": "How many high schoolers are there?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Return the grade for the high schooler named Kyle.",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Show the names of all high schoolers in grade 10.",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Show me all grades that have at least 4 students.",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Show the student IDs and numbers of friends corresponding to each.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Show ids of all students who do not have any friends.",
+   "difficulty": "hard",
+   "repaired": false
+  }
+ ],
+ "orchestra": [
+  {
+   "question": "Return the names of conductors that do not have the nationality \"USA\".",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Return the maximum and minimum shares for performances that do not have the type \"Live final\".",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What are the names of conductors as well as the corresonding orchestras that they have conducted?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Please show the different record companies and the corresponding number of orchestras.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "How many orchestras does each record company manage?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Show the years in which orchestras that have given more than one performance are founded.",
+   "difficulty": "medium",
+   "repaired": false
+  }
+ ],
+ "pets_1": [
+  {
+   "question": "Find number of pets owned by students who are older than 20.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What is the average and maximum age for each pet type?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "For students who have pets , how many pets does each student have ? list their ids instead of names .",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Find the first name and gender of student who have more than one pet.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What is the first name and gender of the all the students who have more than one pet?",
+   "difficulty": "medium",
+   "repaired": false
+  }
+ ],
+ "poker_player": [
+  {
+   "question": "Count the number of different nationalities.",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What are the final tables made and best finishes for all poker players?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What are the names of poker players whose earnings is higher than 300000?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Give the names of poker players who have earnings above 300000.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What is the average earnings of poker players with height higher than 200?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What are different nationalities of people and the corresponding number of people from each nation?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "List the names and birth dates of people in ascending alphabetical order of name.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "List the names of people that are not poker players.",
+   "difficulty": "hard",
+   "repaired": false
+  }
+ ],
+ "real_estate_properties": [
+  {
+   "question": "How many available features are there in total?",
+   "difficulty": "easy",
+   "repaired": false
+  }
+ ],
+ "singer": [
+  {
+   "question": "For each citizenship, how many singers are from that country?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "what are the different names of the singers that have sales more than 300000?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Show the names of singers and the total sales of their songs.",
+   "difficulty": "medium",
+   "repaired": false
+  }
+ ],
+ "student_transcripts_tracking": [
+  {
+   "question": "What is the zip code of the address in the city Port Chelsea?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What is the first name of the student whose permanent address is different from his or her current one?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "On average, when were the transcripts printed?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "How many transcripts are listed?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "what are all the addresses including line 1 and line 2?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "How many degrees does the engineering department have?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What is the date and id of the transcript with at least 2 courses listed?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "When is the first transcript released? List the date and details.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Which department offers the most number of degrees? List department name and id.",
+   "difficulty": "extra",
+   "repaired": false
+  },
+  {
+   "question": "What is the name of the course with the most students enrolled?",
+   "difficulty": "extra",
+   "repaired": false
+  }
+ ],
+ "tvshow": [
+  {
+   "question": "What is the number of cartoones written by Joseph Kuhr?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What is the content of TV Channel with serial name \"Sky Radio\"?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What is the Package Option of TV Channel with serial name \"Sky Radio\"?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What is Weekly Rank of TV series with Episode \"A Love of a Lifetime\"?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What are the titles of all cartoons directed by Ben Jones or Brandon Vietti?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What is the name of the series that has the episode \"A Love of a Lifetime\"?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "How many cartoons did each director create?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Find the production code and channel of the most recently aired cartoon .",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "find the pixel aspect ratio and nation of the tv channels that do not use English.",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "find the id of tv channels that do not play any cartoon directed by Ben Jones.",
+   "difficulty": "hard",
+   "repaired": false
+  }
+ ],
+ "voter_1": [
+  {
+   "question": "What are the names of the contestants whose names are not 'Jessie Alloway'",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "Of all the contestants who got voted, what is the contestant number and name of the contestant who got least votes?",
+   "difficulty": "extra",
+   "repaired": false
+  }
+ ],
+ "world_1": [
+  {
+   "question": "What are the names of all the countries that became independent after 1950?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What is the average expected life expectancy for countries in the region of Central Africa?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What is the total population of Gelderland district?",
+   "difficulty": "easy",
+   "repaired": false
+  },
+  {
+   "question": "What region does Angola belong to and what is its population?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Give the average life expectancy for countries in Africa which are republics?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What is the number of distinct continents where Chinese is spoken?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "How many continents speak Chinese?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What are the population, name and leader of the country with the largest area?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "What are names of countries with the top 3 largest population?",
+   "difficulty": "medium",
+   "repaired": false
+  },
+  {
+   "question": "Which languages are spoken by only one country in republic governments?",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "What are the name, population, and life expectancy of the largest Asian country by land?",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "Return the different names of cities that are in Asia and for which Chinese is the official language.",
+   "difficulty": "hard",
+   "repaired": false
+  },
+  {
+   "question": "Which continent speaks the most languages?",
+   "difficulty": "extra",
+   "repaired": false
+  },
+  {
+   "question": "What is the language that is used by the largest number of Asian nations?",
+   "difficulty": "extra",
+   "repaired": false
+  },
+  {
+   "question": "Which Asian countries have a population that is larger than any country in Africa?",
+   "difficulty": "extra",
+   "repaired": false
+  }
+ ]
+}

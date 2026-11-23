@@ -38,6 +38,7 @@ def build(out: Path, model_repo: str, github_url: str) -> None:
     out.mkdir(parents=True)
     shutil.copy2(REPO / "space" / "demo.py", out / "demo.py")
     shutil.copy2(REPO / "space" / "requirements.txt", out / "requirements.txt")
+    shutil.copy2(REPO / "space" / "suggestions.json", out / "suggestions.json")
     readme = (REPO / "space" / "README.md").read_text(encoding="utf-8")
     readme = readme.replace("__MODEL_REPO__", model_repo or "Qwen/Qwen2.5-Coder-3B-Instruct")
     readme = readme.replace("__GITHUB_URL__", github_url)
